@@ -1,0 +1,59 @@
+data_mixins:
+    zipcode:
+        class: ZipcodeMixin
+        fields:
+            zipcode:
+                type: "@django.ForeignKey"
+                relation: zipcode
+                options:
+                    "null": true
+                    on_delete: "@django.PROTECT"
+                    editable: false
+
+    zipcodes:
+        class: ZipcodesMixin
+        fields:
+            zipcodes:
+                type: "@django.ManyToManyField"
+                relation: zipcode
+
+data_base:
+    zipcode:
+        class: ZipcodeBase
+        base: resource
+        mixins: [zipcode]
+        id_fields: [zipcode_id, name]
+        meta:
+            unique_together: [zipcode, name]
+            scope: zipcode
+
+data:
+    zipcode:
+        class: Zipcode
+        base: country
+        roles:
+            edit: [region-admin]
+            view: [region-viewer]
+
+command_mixins:
+    zipcode:
+        class: ZipcodeMixin
+        mixins: [country]
+        meta:
+            zipcode:
+                data: zipcode
+                priority: 2
+
+command_base:
+    zipcode:
+        mixins: [zipcode]
+        server_enabled: true
+        groups_allowed: [region-admin]
+
+command:
+    region:
+        zipcode:
+            resource: zipcode
+            base: zipcode
+            base_name: zipcode
+            priority: 4

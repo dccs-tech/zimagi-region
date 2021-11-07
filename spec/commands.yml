@@ -1,0 +1,8 @@
+command_base:
+    region:
+        server_enabled: true
+        groups_allowed: [region-admin]
+
+command:
+    region:
+        priority: 120

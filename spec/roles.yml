@@ -1,0 +1,3 @@
+roles:
+    region-admin: Administer regional information
+    region-viewer: Read-only access to regional information

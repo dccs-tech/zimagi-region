@@ -1,5 +1,5 @@
-# VSCode files
-*.code-workspace
+# Python cache files
+__pycache__
 
 # System files
 .*

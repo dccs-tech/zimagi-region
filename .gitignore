@@ -1,0 +1,6 @@
+# VSCode files
+*.code-workspace
+
+# System files
+.*
+!.gitignore
